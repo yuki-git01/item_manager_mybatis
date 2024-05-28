@@ -1,5 +1,12 @@
 package com.example.mapper;
 
-public interface ItemMapper {
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.example.entity.Item;
+
+@Mapper
+public interface ItemMapper {
+	public List<Item> findDeletedAtIsNull();
 }
