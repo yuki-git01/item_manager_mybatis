@@ -17,7 +17,7 @@
 			<result column="C_NAME" property="name" />
 		</association>
 	</resultMap>
-	<select id="findDeletedAtIsNull" resultMap="ItemMap">
+	<select id="findAllDeletedAtIsNull" resultMap="ItemMap">
 		SELECT 
 		I.ID
 		,I.NAME

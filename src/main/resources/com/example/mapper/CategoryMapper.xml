@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapperタグでMapperインターフェースと紐づける -->
+<mapper namespace="com.example.mapper.CategoryMapper">
+	<resultMap type="com.example.entity.Category"
+		id="categoryMap">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"></result>
+	</resultMap>
+	<select id="findAll" resultMap="categoryMap">
+		SELECT * FROM CATEGORIES
+	</select>
+</mapper>

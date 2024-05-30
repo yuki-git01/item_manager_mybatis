@@ -18,7 +18,8 @@ public class ItemService {
 		this.itemMapper = itemMapper;
 	}
 
-	public List<Item> findDeletedAtIsNull() {
-		return this.itemMapper.findDeletedAtIsNull();
+	public List<Item> findAllDeletedAtIsNull() {
+		return this.itemMapper.findAllDeletedAtIsNull();
 	}
+
 }
