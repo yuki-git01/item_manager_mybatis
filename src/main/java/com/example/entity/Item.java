@@ -54,4 +54,7 @@ public class Item {
 		return this.category;
 	}
 
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 }

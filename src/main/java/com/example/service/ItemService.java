@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.entity.Category;
 import com.example.entity.Item;
 import com.example.mapper.ItemMapper;
 
@@ -20,6 +21,17 @@ public class ItemService {
 
 	public List<Item> findAllDeletedAtIsNull() {
 		return this.itemMapper.findAllDeletedAtIsNull();
+	}
+
+	public void insert(String name, Integer price, Integer categoryId) {
+		Item item = new Item();
+		item.setName(name);
+		item.setPrice(price);
+
+		Category category = new Category();
+		category.setId(categoryId);
+		item.setCategory(category);
+		this.itemMapper.insert(item);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.entity.Category;
@@ -40,5 +41,11 @@ public class ItemController {
 		List<Category> categories = this.categoryService.findAll();
 		model.addAttribute("categories", categories);
 		return "create";
+	}
+
+	@PostMapping("/create")
+	public String create(@ModelAttribute("itemForm") ItemForm itemForm) {
+		this.itemService.insert(itemForm.getName(), itemForm.getPrice(), itemForm.getCategoryId());
+		return "redirect:/index";
 	}
 }
