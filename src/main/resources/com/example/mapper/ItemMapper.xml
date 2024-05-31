@@ -59,4 +59,11 @@
 		INSERT INTO ITEMS (ID, NAME, PRICE, CATEGORY_ID) VALUES
 		(ITEM_ID_SEQ.nextval, #{name}, #{price}, #{category.id})
 	</insert>
+	<update id="update">
+	   UPDATE ITEMS SET NAME = #{name}, PRICE = #{price}, CATEGORY_ID = #{category.id} WHERE ID = #{id}
+	</update>
+	
+	<update id="delete">
+	   UPDATE ITEMS SET DELETED_AT = #{deletedAt} WHERE ID = #{id}
+	</update>
 </mapper>

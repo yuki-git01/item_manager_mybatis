@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,24 @@ public class ItemService {
 		category.setId(categoryId);
 		item.setCategory(category);
 		this.itemMapper.insert(item);
+	}
+
+	public void update(Integer id, String name, Integer price, Integer categoryId) {
+		Item item = this.itemMapper.findById(id);
+		item.setName(name);
+		item.setPrice(price);
+
+		Category category = new Category();
+		category.setId(categoryId);
+		item.setCategory(category);
+
+		this.itemMapper.update(item);
+	}
+
+	public void delete(Integer id) {
+		Item item = this.itemMapper.findById(id);
+		item.setDeletedAt(LocalDateTime.now());
+		this.itemMapper.delete(item);
 	}
 
 }

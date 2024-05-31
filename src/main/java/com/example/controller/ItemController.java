@@ -58,8 +58,21 @@ public class ItemController {
 		itemForm.setCategoryId(item.getCategory().getId());
 
 		List<Category> categories = this.categoryService.findAll();
-
+		/* ☆修正箇所：更新する商品のidをhtml内で扱えるようにする☆ */
 		model.addAttribute("categories", categories);
+		model.addAttribute("id", id);
 		return "edit";
+	}
+
+	@PostMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Integer id, ItemForm itemForm) {
+		this.itemService.update(id, itemForm.getName(), itemForm.getPrice(), itemForm.getCategoryId());
+		return "redirect:/index";
+	}
+
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer id) {
+		this.itemService.delete(id);
+		return "redirect:/index";
 	}
 }
