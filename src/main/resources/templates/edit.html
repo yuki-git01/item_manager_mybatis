@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品更新ページ</title>
+</head>
+
+<body>
+    <h1>商品更新ページ</h1>
+    <form th:action="@{/edit/{id}(id=${id})}" th:object="${itemForm}" method="post">
+        <div>
+            <label>商品名</label>
+        </div>
+        <div>
+            <input type="text" placeholder="商品名を入力ください" th:field="*{name}">
+        </div>
+        <div>
+            <label>価格</label>
+        </div>
+        <div>
+            <input type="number" placeholder="価格を入力してください" th:field="*{price}">
+        </div>
+        <div>
+            <label>カテゴリー</label>
+        </div>
+        <div>
+            <!-- DBのITEMSテーブルの持っているCATEGORY_IDを初期表示選択に -->
+            <select th:field="*{categoryId}">
+                <!-- DBのCATEGORIESテーブルからデータを引っ張って表示 -->
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" name="send" value="登録する">
+        </div>
+        <div>
+            <a href="/index">戻る</a>
+        </div>
+    </form>
+</body>
+
+</html>

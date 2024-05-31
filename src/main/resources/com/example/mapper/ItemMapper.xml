@@ -18,7 +18,7 @@
 		</association>
 	</resultMap>
 	<select id="findAllDeletedAtIsNull" resultMap="ItemMap">
-		SELECT 
+		SELECT
 		I.ID
 		,I.NAME
 		,I.PRICE
@@ -32,9 +32,31 @@
 		CATEGORIES C
 		ON
 		I.CATEGORY_ID = C.ID
-		WHERE I.DELETED_AT IS NULL
+		WHERE
+		I.DELETED_AT IS NULL
 	</select>
-	<insert id="insert" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
-	   INSERT INTO ITEMS (ID, NAME, PRICE, CATEGORY_ID) VALUES (ITEM_ID_SEQ.nextval, #{name}, #{price}, #{category.id})
+	<select id="findById" resultMap="ItemMap">
+		SELECT
+		I.ID
+		,I.NAME
+		,I.PRICE
+		,I.STOCK
+		,I.DELETED_AT
+		,C.ID AS C_ID
+		,C.NAME AS C_NAME
+		FROM
+		ITEMS I
+		INNER JOIN
+		CATEGORIES C
+		ON
+		I.CATEGORY_ID = C.ID
+		WHERE
+		I.ID = #{id}
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyColumn="ID"
+		keyProperty="id">
+		INSERT INTO ITEMS (ID, NAME, PRICE, CATEGORY_ID) VALUES
+		(ITEM_ID_SEQ.nextval, #{name}, #{price}, #{category.id})
 	</insert>
 </mapper>

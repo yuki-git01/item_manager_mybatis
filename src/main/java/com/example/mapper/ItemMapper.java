@@ -10,5 +10,7 @@ import com.example.entity.Item;
 public interface ItemMapper {
 	public List<Item> findAllDeletedAtIsNull();
 
+	public Item findById(Integer id);
+
 	public void insert(Item item);
 }
